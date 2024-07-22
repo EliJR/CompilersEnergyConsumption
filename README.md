@@ -1,4 +1,7 @@
-# Programming Languages Ranking based on Energy Measurements
+# Does the programming language translator version influence the energy consumption of programming languages?
+
+[Elisa Jimenez](https://orcid.org/0000-0002-2158-037X)  
+
 [Alberto Gordillo](https://orcid.org/0000-0002-4742-173X)  
 
 [Coral Calero](https://orcid.org/0000-0003-0728-4176)
@@ -7,23 +10,27 @@
 
 [Félix García](https://orcid.org/0000-0001-6460-0353)
 
-[João Paulo Fernandes](https://orcid.org/0000-0003-0934-9244)
-
-[Rui Abreu](https://orcid.org/0000-0002-7745-8015)
-
-[João Saraiva](https://orcid.org/0000-0002-8891-8881)
 
 
 ## Abstract
-This study builds upon the previous one carried out by [Pereira et al., 2021]( https://states.github.io/files/j2.pdf), in which 27 programming languages based on their energy efficiency were ranked under a software-based approach using RAPL software. The main motivation for this research is: 
-1. Corroborate the already existing ranking by adding a new point of empirical evidence.
-2. Assess the actual consumption of the PLs with a hardware-based approach versus the obtained previous study results which were based on estimations.
-3. Delve deeper into the analysis of energy consumption of PLs, as it is essential to consider not only the overall consumption of each language but also various hardware components of interest, such as the processor, graphics card, and hard drive.
+Today, software plays a crucial role in our daily activities. Virtually all the technology we use contains software
+components written in a particular programming language. In this context, programming language translators play an
+important role, as they are needed to convert the software source code, written by professional software developers,
+into a format that can be executed by a machine. The significant influence of the programming language on the energy
+consumption of the resulting programs has been highlighted in some research. However, there have been no studies on
+the impact of the programming language translator version of the programming language on the energy consumption.
+This paper presents a first approach to fill this gap by investigating the impact of programming language translator
+versions on the energy consumption of programs written in Python, C and Java. We measured the energy consumed
+by eight algorithms written in the three languages and run with different programming language translator versions.
+Surprisingly, the results show no noticeable trend of improvement between versions within each language. These
+results seem to indicate that energy efficiency is not among the aspects considered to evolve programming language
+translators.
 
 ## What is this?
 
-This repository contains the source code of 6 algorithms implemented in 14 programming languages, which were obtained from [Computer Language Benchmark Game](https://benchmarksgame-team.pages.debian.net/benchmarksgame/).
-The repository also includes the resulting empirical results and some samples of the energy logs obtained from the hardware measuring instrument used in the study.
+This repository contains the source code of 8 algorithms implemented in 3 programming languages (Java, C and Python), which were obtained from [Computer Language Benchmark Game](https://benchmarksgame-team.pages.debian.net/benchmarksgame/).
+The repository also includes the resulting empirical results and some samples of the energy records obtained from the hardware measurement instrument used in the study.
+
 
 ## How is structured?
 
@@ -31,11 +38,10 @@ This folder contains three main folders: code, empirical results and sample logs
 
 ## Code Folder
 
-The code folder contains 14 subfolders, one for each programming language, and a gen-input file to generate the input files needed to run some algorithms. It is structured as follows:
-
+The code folder contains 17 subfolders, one for each PLT (Programming Language Translator).  Its structure is as follows:
 ```Java
 
-| <Programming Language-1>
+| <PTL-1>
 	| <algorithm-1>
 		| <source>
 		| Makefile
@@ -44,19 +50,19 @@ The code folder contains 14 subfolders, one for each programming language, and a
 		| <source>
 		| Makefile
 | ...
-| <Programming Language-i>
+| <PTL-i>
 	| <algorithm-1>
 	| ...
 	| <algorithm-i>
-| gen-input.sh
+
 
 ```
 
-Taking the `C` programming language as an example, this is how the folder for the `binary-trees` algorithm would look like:
+Taking the `Java` PLT as an example, this is how the folder for the `binary-trees` algorithm would look like:
 
 ```Java
 
-| C
+| Java8
 	| binary-trees
 		| binarytrees.gcc-3.c
 		| Makefile
@@ -89,8 +95,8 @@ run:
 ## Empirical Results Folder
 
 The empirical results folder includes all the information on the analysis of the energy consumption of the software. The basic terminology used is as follows:
-- An entity class corresponds to a programming language. 
-- The test case is an algorithm implemented in a determined programming language.
+- An entity class corresponds to a PLT. 
+- The test case is an algorithm implemented in a determined PLT.
 - Measurement is each of the executions of a testcase.
 
 It is structured as follows:
@@ -101,22 +107,9 @@ It is structured as follows:
 	| ...
 	| <EntityClass-i>@<Algorithm-i>.xls
 	| testcases_total.xls
-	| testcases_comparison.xls
+	| testcases_averages_comparison.xls
 	| versions_total.xls
-	| versions_comparison.xls
-	| 
-	| <clustering>
-		| ...
-		| <byalgoritms>
-			| <source>
-			| Makefile
-		|
-		| <bylanguage>
-			| <source>
-			| Makefile
-        	|ClustersByLanguageAlgorithm.xls
-        	|scriptR.txt
-	| 
+	| versions_averages__comparison.xls
 	| <img>
 		| <EntityClass-1>@<Algorithm>_<Device-1>.png
 		| ...
@@ -125,14 +118,10 @@ It is structured as follows:
 		| <EntityClass-1>@<Algorithm>_dut-1.png
 		| ...
 		| <EntityClass-i>@<Algorithm>_dut-i.png
-|<comparisons>
-	| <byParadigm>
-		| ...
-	| <byType>
-		| ...
+
 ```
 ### Report Folder
-The report folder contains 84 Excel files containing the analysis data. One for each test case named `<EntityClass>@<Algorithm>`. It also contains two files "testcases_total" and "versions_total" with the summary of the test case and version information respectively.
+The report folder contains 225 Excel files containing the analysis data. One for each test case named `<EntityClass>@<Algorithm>`. It also contains two files "testcases_total" and "versions_total" with the summary of the test case and version information respectively.
 As an example, the following images show the information of a test case.
 
 The first image shows all the information of a measurement.
@@ -154,20 +143,14 @@ Finally, the validation tests of the statistics can be found in testcases_compar
 
 ![](resources/comparison_example.PNG)
 
-#### Clustering folder
-Within the clustering folder there are two subfolders containing the cluster images for each algorithm and language. There is also the file ClustersByLanguageAlgorithm with the data to generate the clusters and scriptR.txt with the R code to generate them.
-
 #### Img folder
 The img folder contains the graphs of the overall consumption in the execution of each measurement performed. It also includes the box plots of each device for each test case.
-
-### Comparisons folder
-This folder contains the ranking tables by type and paradigm. This information has been obtained from the data in the versions_total file.
 
 ## Sample Logs Folder
 This folder contains an example of a log, to illustrate the raw data generated by the EET measurement instrument. 
 - The json file contains the measurement information of the entity class.
-- Each line of LPsc++_490_EX are the values obtained for id, time, monitor and DUT
-- Each line of LPsc++_490_IN are the values obtained for id, time, HDD(),HDD(2), Graphics card(1), Graphics card(2),Processor(1) and Processor(2).
+- Each line of 3RunC7_847_EX are the values obtained for id, time, monitor and DUT
+- Each line of 3RunC7_847_IN are the values obtained for id, time, HDD(),HDD(2), Graphics card(1), Graphics card(2),Processor(1) and Processor(2).
 DUT hardware components have two values because they have two sensors connected, the result of the DUT hardware component is the sum of the two values.
 
 Note: The rest of the logs of this study are not included in the repository for practical reasons, due to their large size.
