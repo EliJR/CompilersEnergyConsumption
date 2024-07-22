@@ -1,8 +1,8 @@
 ## Empirical Results Folder
 
 The empirical results folder includes all the information on the analysis of the energy consumption of the software. The basic terminology used is as follows:
-- An entity class corresponds to a programming language. 
-- The test case is an algorithm implemented in a determined programming language.
+- An entity class corresponds to a PLT. 
+- The test case is an algorithm implemented in a determined PLT.
 - Measurement is each of the executions of a testcase.
 
 It is structured as follows:
@@ -13,10 +13,9 @@ It is structured as follows:
 	| ...
 	| <EntityClass-i>@<Algorithm-i>.xls
 	| testcases_total.xls
-	| testcases_comparison.xls
+	| testcases_averages_comparison.xls
 	| versions_total.xls
-	| versions_comparison.xls
-	| 
+	| versions_averages__comparison.xls
 	| <img>
 		| <EntityClass-1>@<Algorithm>_<Device-1>.png
 		| ...
@@ -28,7 +27,7 @@ It is structured as follows:
 
 ```
 ### Report Folder
-The report folder contains 84 Excel files containing the analysis data. One for each test case named `<EntityClass>@<Algorithm>`. It also contains two files "testcases_total" and "versions_total" with the summary of the test case and version information respectively.
+The report folder contains 225 Excel files containing the analysis data. One for each test case named `<EntityClass>@<Algorithm>`. It also contains two files "testcases_total" and "versions_total" with the summary of the test case and version information respectively.
 As an example, the following images show the information of a test case.
 
 The first image shows all the information of a measurement.
