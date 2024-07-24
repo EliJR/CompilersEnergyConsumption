@@ -25,31 +25,38 @@ It is structured as follows:
 		| ...
 		| <EntityClass-i>@<Algorithm>_dut-i.png
 
+| coorelations.pdf
+| ScatterGraph_of_time_and_consumption.pdf
+| testcases_averages_comparison.xls
+| testcases_total.xls
+| testcases_spearman.xls
+| versions_averages__comparison.xls
+| versions_total.xls
+| versions_spearman.xls
+
 ```
 ### Report Folder
 The report folder contains 225 Excel files containing the analysis data. One for each test case named `<EntityClass>@<Algorithm>`. It also contains two files "testcases_total" and "versions_total" with the summary of the test case and version information respectively.
 As an example, the following images show the information of a test case.
 
 The first image shows all the information of a measurement.
-![](../resources/measurement_example.PNG)
+![](resources/measurement_example.PNG)
 
 The second image shows all the information of a test case.
-![](../resources/testcase_example.PNG)
+![](resources/testcase_example.PNG)
 
 To facilitate the comparison of information, the file "testcases_total" contains one sheet for each statistical value of all test cases. These statistical values are:
 Consumption average without baseline, Consumption median without baseline, Consumption average (with baseline), Consumption median (with baseline), Baseline, Power min, Power average without baseline, Power average (with baseline), Power median without baseline, Power median (with baseline), Trimmed mean to 20%, Winsorized mean to 20%, Geometric mean, Mean standard deviation, Mean variance, Standard deviation among measurments and Variance among measurments
 
-![](../resources/testcases_total_example.PNG)
+![](resources/testcases_total_example.PNG)
 
 In the same way as the "testcase_total" document, the "versions_total" document contains the statistical values for each Entity Class.
 
-![](../resources/versions_total_example.PNG)
+![](resources/versions_total_example.PNG)
 
 Finally, the validation tests of the statistics can be found in testcases_comparison and versions-comparison. It contains the Kolmogorov-Smirnov and Mann-Whitney tests for all comparisons of time, power and consumption.
 
-![](../resources/comparison_example.PNG)
-
+![](resources/comparison_example.PNG)
 
 #### Img folder
-The img folder contains the graphs of the overall consumption in the execution of each measurement performed. It also includes the box plots of each device for each test case.
-
+The img folder contains the graphs of the overall consumption in the execution of each measurement performed. It also includes the box plots of each device for each test case and for each version of PLT.
